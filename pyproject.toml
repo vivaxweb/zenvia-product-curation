@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zenvia-ai"
+version = "1.0.0"
+description = "Multimodal Vibe Classification Engine for Gen Z Fashion Discovery"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    { name = "Vivek Desai", email = "vivax.work@gmail.com" }
+]
+license = { text = "MIT" }
+keywords = ["meta-ai", "fashion", "multimodal", "computer-vision", "gen-z", "ecommerce"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "pydantic>=2.7.0",
+    "requests>=2.31.0",
+    "openpyxl>=3.1.2",
+    "pandas>=2.2.0",
+    "streamlit>=1.33.0",
+    "Pillow>=10.2.0",
+    "python-dotenv>=1.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-mock>=3.12.0",
+    "black>=24.0.0",
+    "ruff>=0.3.0",
+]
+
+[tool.pytest.ini_options]
+addopts = "-s"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
