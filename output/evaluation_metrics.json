@@ -1,0 +1,17 @@
+{
+  "total_evaluated": 5,
+  "exact_match_count": 0,
+  "partial_match_count": 5,
+  "subcategory_match_count": 5,
+  "average_confidence": 0.956,
+  "average_latency": 1.2,
+  "agreement_rate": 100.0,
+  "vibe_distribution": {
+    "streetwear": 5,
+    "retro": 4,
+    "softboy": 1
+  },
+  "occasion_distribution": {
+    "casual": 5
+  }
+}
