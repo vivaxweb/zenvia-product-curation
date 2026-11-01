@@ -41,10 +41,23 @@ class Config:
     DEMO_DIR: str = os.path.join(BASE_DIR, "demo")
 
     @classmethod
+    def get_api_key(cls) -> str:
+        """Resolve API key from environment or Streamlit secrets."""
+        key = os.getenv("OPENROUTER_API_KEY", "")
+        if not key:
+            try:
+                import streamlit as st
+                if hasattr(st, "secrets") and "OPENROUTER_API_KEY" in st.secrets:
+                    key = str(st.secrets["OPENROUTER_API_KEY"])
+            except Exception:
+                pass
+        return key or cls.OPENROUTER_API_KEY
+
+    @classmethod
     def get_headers(cls) -> dict:
         """Construct standard HTTP headers for OpenRouter API."""
         return {
-            "Authorization": f"Bearer {cls.OPENROUTER_API_KEY}",
+            "Authorization": f"Bearer {cls.get_api_key()}",
             "Content-Type": "application/json",
             "HTTP-Referer": cls.APP_REFERER,
             "X-Title": cls.APP_TITLE,
