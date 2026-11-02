@@ -68,9 +68,10 @@ Evaluated against a test suite of real-world curated fashion products:
 
 1. **Multimodal Visual Inspection**: Instead of relying on unreliable merchant keywords, the vision pipeline analyzes the actual garment still — recognizing drop shoulders, acid washes, collegiate typography, fabric weight, and silhouette.
 2. **Master Taxonomy Enforcement**: Restricts output classifications to a verified 25-vibe Gen Z taxonomy (`zenvia_ai/taxonomy.py`) with automatic fallback handling.
-3. **Resilient Production Pipeline**: Implements exponential backoff retries, multi-format JSON extraction (supporting thinking-token outputs and markdown blocks), and schema validation via **Pydantic v2**.
-4. **Zero Marginal Cost Architecture**: Engineered to operate on zero-cost free-tier vision endpoints with zero credit card dependency, making it practical for solo indie builders.
-5. **Interactive Evaluation Dashboard**: Includes a complete **Streamlit** dashboard with side-by-side visual inspections, real-time single-URL classification, and automated benchmark reporting.
+3. **Autonomous Batch Catalog Studio**: Direct spreadsheet ingestion (`.xlsx` and `.csv`) supporting multi-marketplace inventory feeds with real-time progress tracking, operational ROI analytics (labor time saved and cost saved), and 1-click enriched export.
+4. **Resilient Production Pipeline**: Implements exponential backoff retries, multi-format JSON extraction (supporting thinking-token outputs and markdown blocks), and schema validation via **Pydantic v2**.
+5. **Zero Marginal Cost Architecture**: Engineered to operate on zero-cost free-tier vision endpoints with zero credit card dependency, making it practical for solo indie builders.
+6. **Production-Grade SaaS Interface**: Modern light SaaS design system with vector SVG icons, squircle metric indicators, live preset playground, and head-to-head empirical evaluation studio.
 
 ---
 
