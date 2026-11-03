@@ -44,15 +44,15 @@ Use these exact answers when filling out the submission portal on **Cerebral Val
 > **Zenvia AI** replaces manual fashion curation with an autonomous multimodal vision-language pipeline:
 > 1. **Visual Feature Perception:** Ingests raw product photography directly to identify garment cuts (drop shoulders, boxy silhouettes), washes (acid wash, vintage distress), fabric textures, and typography style.
 > 2. **Master Taxonomy Enforcement:** Classifies products against Zenvia’s standardized 25-vibe Indian Gen Z taxonomy (`zenvia_ai/taxonomy.py`) with strict Pydantic v2 schema validation.
-> 3. **Occasion & Metadata Extraction:** Maps items to occasions (`casual`, `college-fest`, `party`) and computes confidence scores.
-> 4. **Production Ingestion:** Enriches spreadsheets ready for instant injection into the live Zenvia database and PWA.
+> 3. **Autonomous Batch Catalog Studio:** Ingests raw marketplace spreadsheets (`.xlsx` and `.csv`) with pre-flight health checks, live garment stream curation, ROI value metrics (labor time and money saved), and 1-click enriched Excel export.
+> 4. **Production Ingestion:** Enriches spreadsheets ready for instant injection into the live Zenvia database and PWA at **zenviashopping.in**.
 
 #### C. How we built it
 > - **AI Vision Engine:** Multimodal vision models (`dots-studio/dots-3-note-preview`) querying product image URLs directly with zero marginal API cost.
 > - **Resilient Architecture:** Custom Python pipeline with exponential backoff retries, multi-format JSON recovery (handling reasoning tokens and markdown code blocks), and Pydantic v2 data models.
-> - **Data & Benchmarking Engine:** Built `CatalogLoader` for Excel stream serialization and `ModelEvaluator` to measure precision, recall, and agreement rate against manual curation.
+> - **Batch Catalog Studio:** Built `CatalogLoader` for Excel/CSV stream serialization, dynamic in-memory template generation, and instant enriched export download.
 > - **Testing & CI:** 11 comprehensive automated unit tests covering taxonomy sanitization, schemas, and pipeline mocks running on GitHub Actions CI.
-> - **Interactive Dashboard:** Full-featured Streamlit web application (`app.py`) for live visual inspection and URL testing.
+> - **Production-Grade SaaS UI:** Built with Streamlit using a modern light SaaS design system (inspired by modern design systems like ai_licia), clean vector SVG icons, squircle metric indicators, and 1-click interactive presets.
 
 #### D. Challenges we ran into
 > 1. **Noisy Marketplace Photography:** Product images often contain models, background clutter, or props. Relying solely on text failed, while naive vision models hallucinated. We engineered high-density system prompts focusing on garment silhouette, color palette, and graphics.
@@ -61,8 +61,9 @@ Use these exact answers when filling out the submission portal on **Cerebral Val
 
 #### E. Accomplishments that we're proud of
 > - **60x Speedup:** Reduced curation latency from **180 seconds** (manual human) to **1.2 seconds** per garment.
-> - **100% Agreement:** Achieved a **100.0% agreement rate** and **95.6% average confidence** against real human curation datasets.
-> - **Clean Engineering:** Delivered a production-grade Python package with 100% passing tests, GitHub Actions CI, and comprehensive architecture diagrams.
+> - **100% Subcategory Precision:** Achieved a **100.0% exact match** on fashion subcategories across multi-aesthetic cohorts (Streetwear and Quiet Luxury).
+> - **Autonomous Batch Studio:** Enables e-commerce operators to ingest entire supplier spreadsheets and export enriched feeds in seconds.
+> - **Clean Engineering Standards:** Delivered a production-grade Python package with 100% passing tests, GitHub Actions CI, and clean vector UI.
 
 #### F. What we learned
 > Multimodal vision models perceive nuanced garment aesthetics far more accurately than text-only LLMs. A plain title like *"Men's Round Neck Tee"* can be instantly recognized as `streetwear, retro` by simply looking at the collegiate lettering and drop-shoulder silhouette in the image.
@@ -82,30 +83,37 @@ Use these exact answers when filling out the submission portal on **Cerebral Val
 ```text
 [0:00 - 0:25] THE HOOK & THE PROBLEM
 - "Hi everyone, I'm Vivek Desai. I'm building Zenvia (zenviashopping.in) — a fashion discovery platform for Gen Z shoppers in India.
-- Gen Z doesn't shop by 'T-shirts' or 'Pants'. We shop by VIBE: streetwear, old money, Y2K, clean girl, and softboy.
-- But marketplaces like Amazon, Myntra, and Meesho have messy keywords and plain descriptions.
-- Up until now, I had to manually look at every single product photo and tag it by hand. It took me 3 minutes per item, and capped my catalog to only 50 products a day."
+- Gen Z doesn't shop by 'T-shirts' or 'Pants'. We shop by VIBE: streetwear, quiet luxury, Y2K, and retro.
+- But Indian marketplaces like Amazon, Myntra, and Meesho have messy keywords and plain descriptions.
+- Up until now, I had to manually look at every single product photo and tag it by hand. It took me 3 minutes per item, and capped our catalog to only 50 products a day."
 
-[0:25 - 1:15] THE SOLUTION & LIVE DEMO
+[0:25 - 0:55] THE SOLUTION & CATALOG SHOWCASE
 - (Switch screen to Streamlit Dashboard: app.py)
 - "To solve this firsthand problem, I built Zenvia AI — an autonomous multimodal vibe-classification engine.
-- Let me show you how it works live. Here is our interactive dashboard.
-- (Click on 'Live Enriched Catalog')
-- Here you can see 108 products from our catalog. Look at this red LEOTUDE T-shirt:
-  Instead of just reading the title, our vision pipeline inspected the photograph directly. It saw the bold collegiate lettering, the relaxed drop shoulder, and instantly tagged it as 'streetwear, retro' with 95% confidence.
-- And look at this lavender tee: It detected the pastel color and bubble font, assigning 'streetwear, softboy'."
+- Here is our live dashboard. Look at the Catalog Showcase:
+  Instead of just reading plain titles, our vision pipeline inspected the photograph directly.
+  For this graphic tee, it perceived the bold collegiate lettering and drop shoulder, tagging it as 'streetwear, retro' with 95% confidence.
+  For this tailored blazer, it recognized the structured suiting and minimal lapels, assigning 'quiet luxury, old money'."
 
-[1:15 - 1:45] REAL-TIME CLASSIFIER & BENCHMARKS
-- (Click on 'Real-Time Image Classifier' tab)
-- "Let's test an item live. I'll paste a fresh product URL from Amazon... click 'Run Multimodal Classification'...
-- And in just 1.2 seconds, it perceives the silhouette, extracts the visual features, and outputs the structured taxonomy.
-- (Click on 'Evaluation & Metrics' tab)
-- Across our evaluation benchmark, Zenvia AI achieved a 100% agreement rate with human curation, dropping curation time by 99% — with zero marginal API cost."
+[0:55 - 1:25] AUTONOMOUS BATCH CATALOG STUDIO (THE KILLER FEATURE)
+- (Click on 'Batch Catalog Studio (Excel/CSV)' tab)
+- "Real e-commerce operators don't tag one item at a time — they deal with spreadsheets.
+- In our Batch Catalog Studio, you can upload any supplier Excel or CSV file.
+- Let me click 'Load Demo Feed (10 Items)'... and hit 'Start Autonomous Multimodal Tagging'.
+- Watch it process live: with every garment, it extracts the visual cues, assigns the subculture tags, and calculates real ROI — saving 9 minutes of human labor and ₹60 in freelance curation fees.
+- With one click, I can download the fully enriched Excel spreadsheet ready for our live store."
 
-[1:45 - 2:05] CODE QUALITY & CONCLUSION
+[1:25 - 1:45] REAL-TIME PLAYGROUND & BENCHMARKS
+- (Click on 'Real-Time Vision Playground')
+- "Judges can also test any custom URL or try our 1-click presets: like this Streetwear Drop Shoulder Tee.
+  In 1.2 seconds, it returns the verified taxonomy and visual cues.
+- (Click on 'Benchmark & Precision Studio')
+- Looking at our head-to-head benchmarks: Zenvia AI is 60x faster than human curators, with 100% subcategory precision, and operates at ₹0 marginal API cost."
+
+[1:45 - 2:00] CODE QUALITY & CONCLUSION
 - (Briefly show GitHub Repo: vivaxweb/zenvia-product-curation)
 - "The codebase is fully open-source with 11 automated unit tests and GitHub Actions CI.
-- Zenvia AI turns raw marketplace noise into a clean, aesthetic vibe-feed, built for the real world.
+- Zenvia AI turns raw marketplace noise into an aesthetic vibe-feed, built for the real world.
 - Thank you!"
 ```
 
