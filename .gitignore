@@ -54,3 +54,10 @@ Desktop.ini
 # Output Data (Keep sample demo files, ignore large run exports)
 output/*.xlsx
 !demo/sample_curated_products.xlsx
+
+# Demo Video Artifacts
+demo_video/*.mp4
+demo_video/*.mp3
+demo_video/*.txt
+demo_video/*.json
+demo_video/raw_recordings/
